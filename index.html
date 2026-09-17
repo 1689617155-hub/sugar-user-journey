@@ -1,0 +1,517 @@
+<title>糖前用户旅程图</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+  :root{
+    --bg:#FFF6EA;
+    --ink:#4A3728; --muted:#96795E; --line:#F0DFC7;
+    --user:#E8792E;   --user-dark:#B45309;  --user-soft:#FDE8D4;
+    --watch:#2563EB;  --watch-dark:#1D4ED8; --watch-soft:#DBEAFE;
+    --app:#0D9488;    --app-dark:#0F766E;   --app-soft:#D9F2EE;
+    --dev:#7C3AED;    --dev-dark:#6D28D9;   --dev-soft:#EEE6FD;
+    --paper:#FFFDF9;
+    --sticker:#FFE9A8; --sticker-line:#F2D38B;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 60% 34% at 50% 100%, rgba(232,121,46,.10), transparent 60%),
+      linear-gradient(180deg,#FFF9F0 0%,var(--bg) 45%,#FFEFD9 100%);
+    color:var(--ink);
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:14px;line-height:1.65;
+  }
+  .slide{max-width:1180px;margin:0 auto;padding:30px 16px 44px}
+
+  /* ================= header ================= */
+  header{text-align:center;margin-bottom:10px}
+  .eyebrow{
+    display:inline-block;background:var(--paper);border:1.5px solid var(--line);
+    border-radius:999px;padding:4px 14px;font-size:12px;font-weight:800;color:var(--user-dark);
+    letter-spacing:.06em;box-shadow:0 2px 6px rgba(180,120,60,.10);
+  }
+  h1{
+    margin:12px 0 8px;font-family:"Baloo 2","Noto Sans SC",sans-serif;
+    font-size:clamp(24px,3.6vw,36px);font-weight:800;letter-spacing:.01em;text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--user);position:relative;white-space:nowrap}
+  h1 em::after{
+    content:"";position:absolute;left:0;right:0;bottom:.06em;height:.32em;border-radius:99px;
+    background:linear-gradient(90deg,rgba(232,121,46,.35),rgba(232,121,46,.15));z-index:-1;
+  }
+  .sub{margin:0 auto;max-width:720px;color:var(--muted);font-size:clamp(12.5px,1.6vw,14px);font-weight:500}
+
+  /* ================= legend ================= */
+  .legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px}
+  .lg{
+    display:inline-flex;align-items:center;gap:6px;background:var(--paper);
+    border:1.5px solid var(--line);border-radius:999px;padding:3px 12px 3px 6px;
+    font-size:11.8px;font-weight:700;box-shadow:0 1px 3px rgba(180,120,60,.08);
+  }
+  .lg .dot{flex:none;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
+  .lg .dot svg{width:11px;height:11px}
+  .lg[data-c="user"] .dot{background:var(--user-soft);color:var(--user-dark)}
+  .lg[data-c="watch"] .dot{background:var(--watch-soft);color:var(--watch-dark)}
+  .lg[data-c="app"] .dot{background:var(--app-soft);color:var(--app-dark)}
+  .lg[data-c="dev"] .dot{background:var(--dev-soft);color:var(--dev-dark)}
+  .lg.note{border-style:dashed;color:var(--muted);font-weight:600}
+
+  /* ================= hero (character + watch + phone) ================= */
+  .hero{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,48px);margin:14px 0 26px}
+  .hero svg{display:block}
+
+  .watch{width:88px;filter:drop-shadow(0 8px 10px rgba(30,64,175,.22))}
+  .watch .wband{fill:#334155}
+  .watch .wbody{fill:#0F172A}
+  .watch .wscr{fill:#E8F1FF}
+  .watch .wicon{fill:#2563EB}
+  .watch .wt1,.watch .wt2,.watch .wt3{fill:#1E3A8A}
+  .watch .wcrown{fill:#475569}
+  .watch .wnotif{fill:#F97316}
+  .watch .wnotif-t{fill:#fff}
+  .watch .wg{stroke:#93C5FD;fill:none;stroke-linecap:round}
+
+  .mi{width:118px;position:relative;filter:drop-shadow(0 10px 12px rgba(232,121,46,.20))}
+  .mi .blush{opacity:.85}
+  .mi .eye{fill:#3B2A1E;transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}
+  @keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+  .mi .cheek{animation:bob 3.6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(2.5px)}}
+
+  .phone{width:172px;filter:drop-shadow(0 10px 14px rgba(13,148,136,.18))}
+  .phone .pbody{fill:#134E4A}
+  .phone .pscreen{fill:#F0FAF8}
+  .phone .phead{fill:#0D9488}
+  .phone .phead-t{fill:#fff}
+  .phone .pkv{fill:#134E4A}
+  .phone .pkv-v{fill:#0F766E}
+  .phone .pline{stroke:#99E3DA;stroke-linecap:round}
+  .phone .gcurve{stroke:#0D9488;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+  .phone .garea{fill:rgba(13,148,136,.12)}
+  .phone .gdot{fill:#0D9488}
+  .phone .ptask{fill:#fff;stroke:#BFEBE4}
+  .phone .pcheck{fill:#0D9488}
+  .phone .pcheck-t{fill:#fff}
+  .phone .pbar{fill:#D9F2EE}
+  .phone .pbar-act{fill:#0D9488}
+
+  /* ================= journey ================= */
+  .journey{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 34px;margin-top:8px}
+
+  .st{position:relative;min-width:0}
+  .st::before{ /* 串联点线（伪时间轴） */
+    content:"";position:absolute;top:23px;left:-40px;width:26px;border-top:2.5px dashed #EFD9BC;display:none;
+  }
+
+  .card{
+    position:relative;height:100%;background:var(--paper);border:1.5px solid var(--line);
+    border-radius:18px;padding:16px 15px 14px;display:flex;flex-direction:column;gap:9px;
+    box-shadow:0 2px 4px rgba(180,120,60,.06),0 12px 24px rgba(190,128,54,.09);
+  }
+  .card::before{content:"";position:absolute;top:-3px;left:22px;width:34px;height:6px;border-radius:99px;background:var(--ac,var(--user));opacity:.85}
+
+  .sthead{display:flex;align-items:center;gap:10px}
+  .badge{
+    flex:none;width:34px;height:34px;border-radius:50%;color:#fff;background:var(--ac,var(--user));
+    font-family:"Baloo 2",sans-serif;font-weight:800;font-size:17px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 0 rgba(74,55,40,.22);
+  }
+  .titles h3{margin:0;font-size:15.5px;font-weight:900;line-height:1.3;text-wrap:balance}
+  .titles .stage{margin:2px 0 0;font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--ac,var(--user));opacity:.95}
+
+  .avatars{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .avatar{
+    display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--line);
+    border-radius:12px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--muted);
+  }
+  .avatar svg{width:20px;height:20px}
+
+  .rows{display:flex;flex-direction:column;gap:7px}
+  .row{display:flex;gap:8px;font-size:12.4px;line-height:1.6}
+  .row .k{
+    flex:none;width:44px;height:20px;border-radius:6px;text-align:center;
+    font-size:10.5px;font-weight:900;color:#fff;transform:translateY(1px);
+  }
+  .row[data-k="see"] .k{background:var(--user)}
+  .row[data-k="back"] .k{background:#8A9BA8}
+  .row[data-k="val"] .k{background:var(--app)}
+
+  .device{
+    border:1.5px dashed var(--line);border-radius:12px;padding:9px 10px;background:#fff;
+  }
+  .device[data-c="watch"]{border-color:#BFDBFE;background:linear-gradient(180deg,#F6FAFF,#EFF6FF)}
+  .device[data-c="app"]{border-color:#A7E8DE;background:linear-gradient(180deg,#F4FCFA,#EAF7F5)}
+  .dtag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;margin-bottom:6px}
+  .dtag svg{width:15px;height:15px}
+  .device[data-c="watch"] .dtag{color:var(--watch-dark)}
+  .device[data-c="app"] .dtag{color:var(--app-dark)}
+  .ui{border-radius:10px;padding:7px 9px;font-size:11.6px;font-weight:700;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.05)}
+  .device[data-c="watch"] .ui{border-radius:14px;color:#1E3A8A;box-shadow:inset 0 0 0 1.5px #BFDBFE}
+  .device[data-c="app"] .ui{color:#0B4F47;box-shadow:inset 0 0 0 1.5px #A7E8DE}
+  .ui .mini{font-size:10.3px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.55}
+  .ui .btnrow{display:flex;gap:6px;margin-top:7px}
+  .ui .btn{
+    flex:1;text-align:center;border-radius:999px;padding:3px 0;font-size:10.6px;font-weight:800;
+  }
+  .device[data-c="watch"] .btn{background:var(--watch-soft);color:var(--watch-dark)}
+  .device[data-c="watch"] .btn.act{background:var(--watch);color:#fff}
+  .ui .kv{display:flex;justify-content:space-between;gap:8px;font-size:10.8px;font-weight:600;color:var(--muted);margin-top:4px}
+  .ui .kv b{color:#0B4F47;font-variant-numeric:tabular-nums}
+  .spark{display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:6px}
+  .spark i{flex:1;border-radius:3px 3px 0 0;background:var(--app-soft);box-shadow:inset 0 0 0 1px #A7E8DE}
+  .spark i.hot{background:var(--app);box-shadow:none}
+
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chipx{
+    display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;
+    font-size:10.8px;font-weight:800;background:var(--dev-soft);color:var(--dev-dark);
+    box-shadow:inset 0 0 0 1px #DDD0FB;
+  }
+  .chipx svg{width:12px;height:12px}
+
+  .warn{margin-top:auto;font-size:10.6px;font-weight:700;color:var(--user-dark);background:var(--user-soft);border-radius:8px;padding:5px 9px}
+  .warn.green{color:var(--app-dark);background:var(--app-soft)}
+
+  /* ================= strips ================= */
+  .strip{
+    margin-top:26px;border-radius:18px;padding:18px 18px 16px;background:var(--paper);
+    border:1.5px solid var(--line);box-shadow:0 12px 24px rgba(190,128,54,.09);
+  }
+  .strip h4{margin:0 0 10px;font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .duo .half{border-radius:14px;padding:12px 14px;font-size:12.4px;line-height:1.7}
+  .duo .half b{display:flex;align-items:center;gap:7px;font-size:13.5px;margin-bottom:5px}
+  .duo .half.w{background:var(--watch-soft);color:#1E3A8A}
+  .duo .half.a{background:var(--app-soft);color:#0B4F47}
+  .loopline{
+    margin-top:12px;text-align:center;font-weight:900;font-size:13.2px;color:var(--ink);
+    background:linear-gradient(90deg,var(--user-soft),var(--app-soft));
+    border-radius:999px;padding:7px 12px;
+  }
+  .loopline span{color:var(--user-dark)}
+
+  .foot{
+    margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
+    background:#FCEBE6;border:1px solid #EFC2B4;color:#A63A24;
+    border-radius:12px;padding:10px 16px;font-size:12px;font-weight:700;text-align:center;
+  }
+
+  @media (max-width:960px){ .journey{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:620px){
+    .journey{grid-template-columns:1fr;gap:20px}
+    .duo{grid-template-columns:1fr}
+    .hero{gap:14px}
+    .mi{width:96px} .phone{width:150px} .watch{width:72px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .mi .eye,.mi .cheek{animation:none}
+  }
+</style>
+
+<div class="slide">
+
+  <header>
+    <span class="eyebrow">运动健康生态 Agent · 完整体验样例（血糖 / 糖尿病前期）</span>
+    <h1>小米的 90 天：一次被<em>持续承接</em>的血糖之旅</h1>
+    <p class="sub">从手表上的第一条风险线索，到确诊、目标化管理和复查衔接 —— 9 个阶段，用户、手表、App、设备与专业服务各司其职。</p>
+  </header>
+
+  <div class="legend">
+    <span class="lg" data-c="user"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.4"/><path d="M5 20c1.4-3.6 4-5.4 7-5.4s5.6 1.8 7 5.4"/></svg></span>用户（小米）</span>
+    <span class="lg" data-c="watch"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg></span>手表触点</span>
+    <span class="lg" data-c="app"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><circle cx="12" cy="18.6" r="1.1" fill="#0D9488"/></svg></span>App 页面</span>
+    <span class="lg" data-c="dev"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.8"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.8"/></svg></span>设备 / 数据方案</span>
+    <span class="lg note">主线：先完成检测 / 专业评估，再确认阶段 —— 硬件按信息缺口推荐，而非先买再确认</span>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <div class="hero" aria-hidden="true">
+    <!-- 手表 -->
+    <svg class="watch" viewBox="0 0 100 132">
+      <rect class="wband" x="34" y="0" width="32" height="26" rx="9"/>
+      <rect class="wband" x="34" y="106" width="32" height="26" rx="9"/>
+      <rect class="wcrown" x="88" y="52" width="7" height="16" rx="3.5"/>
+      <rect class="wbody" x="18" y="22" width="64" height="88" rx="22"/>
+      <rect class="wscr" x="25" y="29" width="50" height="74" rx="16"/>
+      <circle class="wnotif" cx="72" cy="30" r="9"/>
+      <text class="wnotif-t" x="72" y="34.5" font-size="11" font-weight="900" text-anchor="middle" font-family="Noto Sans SC">1</text>
+      <rect class="wicon" x="39" y="38" width="22" height="5" rx="2.5"/>
+      <text class="wt1" x="50" y="57" font-size="9.5" font-weight="900" text-anchor="middle" font-family="Noto Sans SC">代谢风险</text>
+      <text class="wt2" x="50" y="67.5" font-size="9.5" font-weight="700" text-anchor="middle" font-family="Noto Sans SC">值得关注</text>
+      <path class="wg" stroke-width="2.6" d="M32 84 l5 -7 4 5 5 -11 5 12 4 -6 5 7"/>
+      <text class="wt3" x="50" y="98" font-size="7.5" font-weight="700" text-anchor="middle" font-family="Noto Sans SC" opacity=".75">点击查看 ›</text>
+    </svg>
+
+    <!-- 小米（卡通形象） -->
+    <svg class="mi" viewBox="0 0 150 190">
+      <!-- 身体 / 连帽衫 -->
+      <path class="cheek" d="M28 172 q4 -42 20 -58 q14 -14 27 -14 t27 14 q16 16 20 58 z" fill="#F59E0B"/>
+      <path class="cheek" d="M62 122 q13 -10 26 0 l-4 12 h-18 z" fill="#FDE8D4"/>
+      <!-- 口袋 -->
+      <rect class="cheek" x="56" y="146" width="38" height="22" rx="8" fill="#EA8A0C"/>
+      <!-- 耳朵 -->
+      <circle cx="36" cy="70" r="7.5" fill="#FBD5AC"/>
+      <circle cx="114" cy="70" r="7.5" fill="#FBD5AC"/>
+      <!-- 头 -->
+      <ellipse cx="75" cy="66" rx="42" ry="40" fill="#FBD5AC"/>
+      <!-- 小米帽 -->
+      <path d="M33 56 q-2 -38 42 -38 t42 38 q-42 -16 -84 0 z" fill="#E8792E"/>
+      <path d="M33 56 q42 -16 84 0 q3 4 2 9 q-44 -17 -88 0 q-1 -5 2 -9 z" fill="#B45309"/>
+      <rect x="63" y="16" width="9" height="11" rx="3.5" fill="#fff"/>
+      <rect x="78" y="16" width="9" height="11" rx="3.5" fill="#fff"/>
+      <!-- 脸 -->
+      <circle class="eye" cx="60" cy="68" r="4.2"/>
+      <circle class="eye" cx="90" cy="68" r="4.2"/>
+      <circle class="blush" cx="50" cy="79" r="5" fill="#F5A96B"/>
+      <circle class="blush" cx="100" cy="79" r="5" fill="#F5A96B"/>
+      <path d="M66 82 q9 8 18 0" fill="none" stroke="#3B2A1E" stroke-width="3" stroke-linecap="round"/>
+      <!-- 竖起的大拇指（右手） -->
+      <g class="cheek">
+        <path d="M118 128 q16 -6 20 -20 q2 -8 8 -7 t5 10 q-2 16 -10 25 q-9 10 -23 8 z" fill="#F59E0B"/>
+        <circle cx="138" cy="104" r="7" fill="#FBD5AC"/>
+      </g>
+      <!-- 左手自然垂放 -->
+      <path class="cheek" d="M32 128 q-12 8 -10 24 q1 9 9 8 q8 -2 9 -14 z" fill="#F59E0B"/>
+    </svg>
+
+    <!-- 手机 App -->
+    <svg class="phone" viewBox="0 0 180 320">
+      <rect class="pbody" x="6" y="2" width="168" height="316" rx="30"/>
+      <rect class="pscreen" x="14" y="10" width="152" height="300" rx="22"/>
+      <rect class="phead" x="14" y="10" width="152" height="52" rx="22"/>
+      <rect class="phead" x="14" y="40" width="152" height="22"/>
+      <text class="phead-t" x="30" y="34" font-size="13" font-weight="900" font-family="Noto Sans SC">血糖管理 · Pro</text>
+      <text class="phead-t" x="30" y="50" font-size="8.5" font-weight="600" font-family="Noto Sans SC" opacity=".85">目标：稳定血糖 · 改善代谢</text>
+      <!-- 今日血糖卡 -->
+      <text class="pkv" x="28" y="86" font-size="10.5" font-weight="900" font-family="Noto Sans SC">今日血糖</text>
+      <text class="pkv-v" x="28" y="101" font-size="8.5" font-weight="700" font-family="Noto Sans SC">餐后峰值 7.2 mmol/L · 达标</text>
+      <!-- 曲线 -->
+      <path class="garea" d="M28 150 L28 138 L46 132 L64 140 L82 118 L100 126 L118 108 L136 122 L152 114 L152 150 Z"/>
+      <path class="gcurve" d="M28 138 L46 132 L64 140 L82 118 L100 126 L118 108 L136 122 L152 114"/>
+      <circle class="gdot" cx="118" cy="108" r="3"/>
+      <!-- 今日任务 -->
+      <text class="pkv" x="28" y="172" font-size="10.5" font-weight="900" font-family="Noto Sans SC">今日任务</text>
+      <rect class="ptask" x="26" y="178" width="128" height="26" rx="8"/>
+      <circle class="pcheck" cx="38" cy="191" r="7"/>
+      <path class="pcheck-t" d="M34.5 191 l2.4 2.6 4.2 -4.8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="195" font-size="9.5" font-weight="700" fill="#134E4A" font-family="Noto Sans SC">餐后快走 10 分钟</text>
+      <rect class="ptask" x="26" y="210" width="128" height="26" rx="8"/>
+      <circle cx="38" cy="223" r="7" fill="#fff" stroke="#0D9488" stroke-width="1.6"/>
+      <text x="52" y="227" font-size="9.5" font-weight="700" fill="#134E4A" font-family="Noto Sans SC">先菜后饭 · 加一份蛋白</text>
+      <!-- 复查倒计时 -->
+      <rect x="26" y="246" width="128" height="30" rx="9" fill="#FFF6E8"/>
+      <text x="36" y="259" font-size="9" font-weight="800" fill="#B45309" font-family="Noto Sans SC">复查倒计时</text>
+      <text x="36" y="271" font-size="9" font-weight="700" fill="#92400E" font-family="Noto Sans SC">还有 12 天 · 报告可一键导出</text>
+      <!-- 底部 tab -->
+      <rect class="pbar" x="26" y="288" width="128" height="14" rx="7"/>
+      <rect class="pbar-act" x="30" y="291" width="26" height="8" rx="4"/>
+    </svg>
+  </div>
+
+  <!-- ============ JOURNEY 9 步 ============ -->
+  <div class="journey">
+
+    <!-- 1 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--watch)">
+        <div class="sthead">
+          <span class="badge">1</span>
+          <div class="titles"><h3>购买并佩戴手表</h3><p class="stage">长期陪伴</p></div>
+        </div>
+        <div class="avatars">
+          <span class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#E8792E" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.4"/><path d="M5 20c1.4-3.6 4-5.4 7-5.4s5.6 1.8 7 5.4"/></svg>小米 · 像往常一样生活</span>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>正常使用运动、睡眠等功能，并<b>授权参加代谢风险研究</b>。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>手表沉淀活动、睡眠、心率长期基线；研究模型形成风险线索。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>穿戴入口 = <b>更早发现的机会</b>；不是所有用户都会收到提示。</span></div>
+        </div>
+        <div class="device" data-c="watch">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 静默记录基线</span>
+          <div class="ui">睡眠 7h12m · 静息心率 68<div class="mini">连续数据 → 个人基线 → 研究模型输入</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--watch)">
+        <div class="sthead">
+          <span class="badge">2</span>
+          <div class="titles"><h3>收到风险研究提示</h3><p class="stage">发现</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>手表出现提示，<b>点击查看</b>。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>App 风险研究页说明观察线索、模型适用范围、数据完整度和<b>不能说明什么</b>。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>提示指向<b>检测 / 专业评估</b>，不是凭手表下诊断。</span></div>
+        </div>
+        <div class="device" data-c="watch">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 弹出研究提示</span>
+          <div class="ui">⚠️ 近期发现值得进一步了解的<b>代谢风险</b>，建议完成血糖相关检测<div class="mini">基于近 6 周睡眠、心率与活动趋势</div><div class="btnrow"><span class="btn act">查看详情</span><span class="btn">稍后再说</span></div></div>
+        </div>
+        <div class="warn">不诊断、不吓唬：只说「值得了解」，并把下一步指向可靠检测</div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--dev)">
+        <div class="sthead">
+          <span class="badge">3</span>
+          <div class="titles"><h3>完成检测 / 导入报告</h3><p class="stage">确证</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>选择完成<b>血糖相关检测</b>，或<b>导入</b>近期体检 / 检验报告。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>Agent 核对日期、关键结果与专业结论；异常或不明确时提供<b>专业评估入口</b>。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>研究线索交给可靠检测与专业判断；<b>不要求先买 CGM 或升级 Pro</b>。</span></div>
+        </div>
+        <div class="chips">
+          <span class="chipx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.8"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.8"/></svg>血糖相关检测</span>
+          <span class="chipx">📄 体检 / 检验报告导入</span>
+          <span class="chipx">🩺 专业评估入口</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--app)">
+        <div class="sthead">
+          <span class="badge">4</span>
+          <div class="titles"><h3>确认阶段与目标</h3><p class="stage">目标确认</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>经专业评估确认处于<b>糖尿病前期</b>，选择「稳定血糖、改善代谢」为主目标。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>档案记录阶段、目标和复查要求；<b>首页从泛健康状态牵引切换为目标牵引</b>。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>从「通用建议」转向「围绕一个明确目标管理」。</span></div>
+        </div>
+        <div class="device" data-c="app">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 首页改版生效</span>
+          <div class="ui">🎯 主目标：稳定血糖 · 改善代谢<div class="mini">阶段：糖尿病前期（专业评估 9/3 确认）<br>下次复查：12 周后 · 已写入档案</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--dev)">
+        <div class="sthead">
+          <span class="badge">5</span>
+          <div class="titles"><h3>推荐方案与套件</h3><p class="stage">方案</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>App 说明建议跟踪的数据、生活任务和可选套件；<b>由用户决定</b>是否升级 Pro。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>默认用报告 + 手表 + 饮食/体重记录；仅在<b>能回答具体问题、适用且获专业认可</b>时推荐血糖仪 / CGM。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>说清为什么需要、用多久、解决什么问题；<b>设备不是服务门槛</b>。</span></div>
+        </div>
+        <div class="chips">
+          <span class="chipx">🩸 CGM（短期标定 14 天）</span>
+          <span class="chipx">🧪 血糖仪</span>
+          <span class="chipx">⚖️ 体脂秤</span>
+        </div>
+        <div class="warn green">推荐逻辑：补「回答不了的信息缺口」，而不是「能多卖就多卖」</div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--app)">
+        <div class="sthead">
+          <span class="badge">6</span>
+          <div class="titles"><h3>目标化首页</h3><p class="stage">呈现</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>首页突出目标进展、可靠血糖/检验资料、体重活动、今日任务及复查。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>Agent 按目标排序多源数据，标注<b>数据来源、缺口和观察限制</b>。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>不再跨 App 拼图，<b>先看到与目标有关的内容</b>。</span></div>
+        </div>
+        <div class="device" data-c="app">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 目标化首页示意</span>
+          <div class="ui">血糖管理<div class="spark"><i style="height:35%"></i><i style="height:48%"></i><i style="height:42%"></i><i class="hot" style="height:66%"></i><i class="hot" style="height:58%"></i><i style="height:40%"></i><i class="hot" style="height:72%"></i></div><div class="kv"><span>餐后峰值（近 7 天）</span><b>7.8 → 7.2 ↓</b></div><div class="kv"><span>数据来源</span><b>CGM ✓ · 报告 ✓ · 手表 ✓</b></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--watch)">
+        <div class="sthead">
+          <span class="badge">7</span>
+          <div class="titles"><h3>手表即时干预</h3><p class="stage">干预</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>记录一餐；合适时点手表提示<b>已约定的餐后活动</b>，可开始、延后或反馈不适。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>结合个人计划、日程与可靠历史选择任务，记录执行及主观反馈。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>建议发生在「<b>现在能做</b>」的时点 —— 干预的第一现场。</span></div>
+        </div>
+        <div class="device" data-c="watch">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 餐后 20 分钟推送</span>
+          <div class="ui">🍚 已记录午餐，按你们的计划：<b>现在开始 10 分钟快走？</b><div class="btnrow"><span class="btn act">开始</span><span class="btn">延后 30 分钟</span><span class="btn">反馈不适</span></div></div>
+        </div>
+        <div class="warn">不凭菜品照片断言「一定升糖」，不承诺活动「必然压低血糖」</div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--app)">
+        <div class="sthead">
+          <span class="badge">8</span>
+          <div class="titles"><h3>App 周期复盘</h3><p class="stage">闭环验证</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>周报说明<b>完成了什么、哪些情境反复出现、下周如何调整</b>。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>对齐饮食、活动、睡眠、体重及可用血糖资料；区分<b>关联 / 证据不足 / 例外</b>；未完成时处理实际障碍。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>从「打卡」升级为「<b>执行—变化—障碍—调整</b>」，提高可坚持性。</span></div>
+        </div>
+        <div class="device" data-c="app">
+          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 本周复盘卡</span>
+          <div class="ui">本周：任务完成 <b>6/7</b> · 餐后峰值整体下移<div class="mini">反复情境：聚餐日的餐后峰值偏高（关联）<br>下周调整：聚餐日把快走提前到餐后 15 分钟</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="st">
+      <div class="card" style="--ac:var(--dev)">
+        <div class="sthead">
+          <span class="badge">9</span>
+          <div class="titles"><h3>复查 / 就医衔接</h3><p class="stage">专业衔接</p></div>
+        </div>
+        <div class="rows">
+          <div class="row" data-k="see"><span class="k">用户</span><span>到期前收到提醒，可导出<b>趋势、事件、执行情况和待问问题</b>。</span></div>
+          <div class="row" data-k="back"><span class="k">背后</span><span>汇总原始资料及摘要；复查结论经用户确认后更新目标；<b>有实际医嘱才开启用药提醒</b>。</span></div>
+          <div class="row" data-k="val"><span class="k">价值</span><span>医生更快了解管理过程，新结论<b>重新进入日常计划</b>。</span></div>
+        </div>
+        <div class="chips">
+          <span class="chipx">📤 一键导出报告</span>
+          <span class="chipx">📋 待问问题清单</span>
+          <span class="chipx">🩺 复查提醒</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ 双端分工 ============ -->
+  <div class="strip">
+    <h4>⌚📱 手表与 App 的分工 —— 两端共同形成闭环</h4>
+    <div class="duo">
+      <div class="half w">
+        <b><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 = 前端的两个关键角色</b>
+        ① 风险研究入口：零门槛沉淀基线、发出线索提示；② 管理过程中的即时执行端：在「现在能做」的时点触达任务。
+      </div>
+      <div class="half a">
+        <b><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App = 承接与解释的主场</b>
+        负责解释依据、确认目标、组织多源数据、完成周期复盘，并承担复查与就医的专业衔接。
+      </div>
+    </div>
+    <div class="loopline">发现 → 检测 → 确认 → 干预 → 验证 → <span>专业衔接</span></div>
+  </div>
+
+  <div class="foot">
+    🛡️ 目标体验示意：穿戴代谢风险研究、检测推荐与 CGM 适用策略均需研究验证、医学审核及合规评估；不构成个体诊疗建议。
+  </div>
+
+</div>

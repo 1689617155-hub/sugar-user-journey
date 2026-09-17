@@ -2,14 +2,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
 <style>
   :root{
-    --bg:#FFF6EA;
-    --ink:#4A3728; --muted:#96795E; --line:#F0DFC7;
-    --user:#E8792E;   --user-dark:#B45309;  --user-soft:#FDE8D4;
-    --watch:#2563EB;  --watch-dark:#1D4ED8; --watch-soft:#DBEAFE;
-    --app:#0D9488;    --app-dark:#0F766E;   --app-soft:#D9F2EE;
-    --dev:#7C3AED;    --dev-dark:#6D28D9;   --dev-soft:#EEE6FD;
+    --bg:#FFF6EA; --ink:#4A3728; --muted:#96795E; --line:#F0DFC7;
+    --user:#E8792E; --user-dark:#B45309; --user-soft:#FDE8D4;
+    --watch:#2563EB; --watch-dark:#1D4ED8; --watch-soft:#DBEAFE;
+    --app:#0D9488;  --app-dark:#0F766E;   --app-soft:#D9F2EE;
+    --dev:#7C3AED;  --dev-dark:#6D28D9;   --dev-soft:#EEE6FD;
     --paper:#FFFDF9;
-    --sticker:#FFE9A8; --sticker-line:#F2D38B;
+    --bezel:#191c22; --screen:#FDFDFB;
   }
   *{box-sizing:border-box}
   body{
@@ -19,194 +18,216 @@
       linear-gradient(180deg,#FFF9F0 0%,var(--bg) 45%,#FFEFD9 100%);
     color:var(--ink);
     font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
-    font-size:14px;line-height:1.65;
+    font-size:14px;line-height:1.6;
   }
-  .slide{max-width:1180px;margin:0 auto;padding:30px 16px 44px}
+  .slide{max-width:1120px;margin:0 auto;padding:30px 16px 44px}
 
-  /* ================= header ================= */
-  header{text-align:center;margin-bottom:10px}
-  .eyebrow{
-    display:inline-block;background:var(--paper);border:1.5px solid var(--line);
-    border-radius:999px;padding:4px 14px;font-size:12px;font-weight:800;color:var(--user-dark);
-    letter-spacing:.06em;box-shadow:0 2px 6px rgba(180,120,60,.10);
-  }
-  h1{
-    margin:12px 0 8px;font-family:"Baloo 2","Noto Sans SC",sans-serif;
-    font-size:clamp(24px,3.6vw,36px);font-weight:800;letter-spacing:.01em;text-wrap:balance;
-  }
+  /* ---------- header ---------- */
+  header{text-align:center;margin-bottom:6px}
+  .eyebrow{display:inline-block;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;
+    padding:4px 14px;font-size:12px;font-weight:800;color:var(--user-dark);letter-spacing:.06em;
+    box-shadow:0 2px 6px rgba(180,120,60,.10)}
+  h1{margin:10px 0 6px;font-family:"Baloo 2","Noto Sans SC",sans-serif;font-size:clamp(23px,3.4vw,34px);
+    font-weight:800;text-wrap:balance}
   h1 em{font-style:normal;color:var(--user);position:relative;white-space:nowrap}
-  h1 em::after{
-    content:"";position:absolute;left:0;right:0;bottom:.06em;height:.32em;border-radius:99px;
-    background:linear-gradient(90deg,rgba(232,121,46,.35),rgba(232,121,46,.15));z-index:-1;
-  }
-  .sub{margin:0 auto;max-width:720px;color:var(--muted);font-size:clamp(12.5px,1.6vw,14px);font-weight:500}
+  h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.32em;border-radius:99px;
+    background:linear-gradient(90deg,rgba(232,121,46,.35),rgba(232,121,46,.15));z-index:-1}
+  .sub{margin:0 auto;max-width:640px;color:var(--muted);font-size:clamp(12px,1.5vw,13.5px);font-weight:500}
 
-  /* ================= legend ================= */
-  .legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px}
-  .lg{
-    display:inline-flex;align-items:center;gap:6px;background:var(--paper);
-    border:1.5px solid var(--line);border-radius:999px;padding:3px 12px 3px 6px;
-    font-size:11.8px;font-weight:700;box-shadow:0 1px 3px rgba(180,120,60,.08);
-  }
-  .lg .dot{flex:none;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px}
-  .lg .dot svg{width:11px;height:11px}
-  .lg[data-c="user"] .dot{background:var(--user-soft);color:var(--user-dark)}
-  .lg[data-c="watch"] .dot{background:var(--watch-soft);color:var(--watch-dark)}
-  .lg[data-c="app"] .dot{background:var(--app-soft);color:var(--app-dark)}
-  .lg[data-c="dev"] .dot{background:var(--dev-soft);color:var(--dev-dark)}
-  .lg.note{border-style:dashed;color:var(--muted);font-weight:600}
-
-  /* ================= hero (character + watch + phone) ================= */
-  .hero{display:flex;align-items:center;justify-content:center;gap:clamp(10px,4vw,48px);margin:14px 0 26px}
+  /* ---------- hero ---------- */
+  .hero{display:flex;align-items:center;justify-content:center;gap:clamp(8px,3.5vw,40px);margin:14px 0 8px}
   .hero svg{display:block}
-
-  .watch{width:88px;filter:drop-shadow(0 8px 10px rgba(30,64,175,.22))}
-  .watch .wband{fill:#334155}
-  .watch .wbody{fill:#0F172A}
-  .watch .wscr{fill:#E8F1FF}
-  .watch .wicon{fill:#2563EB}
-  .watch .wt1,.watch .wt2,.watch .wt3{fill:#1E3A8A}
-  .watch .wcrown{fill:#475569}
-  .watch .wnotif{fill:#F97316}
-  .watch .wnotif-t{fill:#fff}
+  .watch{width:84px;filter:drop-shadow(0 8px 10px rgba(30,64,175,.22))}
+  .watch .wband{fill:#334155}.watch .wbody{fill:#0F172A}.watch .wscr{fill:#E8F1FF}
+  .watch .wicon{fill:#2563EB}.watch .wt1,.watch .wt2,.watch .wt3{fill:#1E3A8A}
+  .watch .wcrown{fill:#475569}.watch .wnotif{fill:#F97316}.watch .wnotif-t{fill:#fff}
   .watch .wg{stroke:#93C5FD;fill:none;stroke-linecap:round}
-
-  .mi{width:118px;position:relative;filter:drop-shadow(0 10px 12px rgba(232,121,46,.20))}
+  .mi{width:110px;filter:drop-shadow(0 10px 12px rgba(232,121,46,.20))}
   .mi .blush{opacity:.85}
   .mi .eye{fill:#3B2A1E;transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}
   @keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
-  .mi .cheek{animation:bob 3.6s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(2.5px)}}
-
-  .phone{width:172px;filter:drop-shadow(0 10px 14px rgba(13,148,136,.18))}
-  .phone .pbody{fill:#134E4A}
-  .phone .pscreen{fill:#F0FAF8}
-  .phone .phead{fill:#0D9488}
-  .phone .phead-t{fill:#fff}
-  .phone .pkv{fill:#134E4A}
-  .phone .pkv-v{fill:#0F766E}
-  .phone .pline{stroke:#99E3DA;stroke-linecap:round}
+  .phone{width:150px;filter:drop-shadow(0 10px 14px rgba(13,148,136,.18))}
+  .phone .pbody{fill:#134E4A}.phone .pscreen{fill:#F0FAF8}.phone .phead{fill:#0D9488}.phone .phead-t{fill:#fff}
+  .phone .pkv{fill:#134E4A}.phone .pkv-v{fill:#0F766E}
   .phone .gcurve{stroke:#0D9488;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-  .phone .garea{fill:rgba(13,148,136,.12)}
-  .phone .gdot{fill:#0D9488}
-  .phone .ptask{fill:#fff;stroke:#BFEBE4}
-  .phone .pcheck{fill:#0D9488}
-  .phone .pcheck-t{fill:#fff}
-  .phone .pbar{fill:#D9F2EE}
-  .phone .pbar-act{fill:#0D9488}
+  .phone .garea{fill:rgba(13,148,136,.12)}.phone .gdot{fill:#0D9488}
+  .phone .ptask{fill:#fff;stroke:#BFEBE4}.phone .pcheck{fill:#0D9488}
 
-  /* ================= journey ================= */
-  .journey{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 34px;margin-top:8px}
-
-  .st{position:relative;min-width:0}
-  .st::before{ /* 串联点线（伪时间轴） */
-    content:"";position:absolute;top:23px;left:-40px;width:26px;border-top:2.5px dashed #EFD9BC;display:none;
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;margin-top:26px;padding:6px 0 0}
+  .timeline::before{
+    content:"";position:absolute;top:0;bottom:0;left:50%;width:0;
+    border-left:3px dashed #EFD3A8;transform:translateX(-50%);
   }
+  .timeline{display:flex;flex-wrap:wrap;align-items:flex-start;column-gap:92px}
+  .st{position:relative;width:calc(50% - 46px);margin-bottom:34px}
+  /* 交错时间轴：偶数卡片向下偏移，让整体更紧凑 */
+  .st:nth-child(even){transform:translateY(190px)}
+  .timeline{margin-bottom:190px}
+  /* flex 布局下由 column-gap 撑开中缝，奇左偶右靠默认顺序 */
+  .st .node{
+    position:absolute;top:26px;width:40px;height:40px;border-radius:50%;
+    background:var(--ac,var(--user));color:#fff;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:18px;
+    display:flex;align-items:center;justify-content:center;z-index:2;
+    box-shadow:0 3px 0 rgba(74,55,40,.22),0 0 0 5px var(--bg),0 0 0 7px #F6E3C4;
+  }
+  .st:nth-child(odd) .node{right:-66px}
+  .st:nth-child(even) .node{left:-66px}
+  .st .node-arrow{
+    position:absolute;top:37px;font-size:0;z-index:1;
+    border-top:7px solid transparent;border-bottom:7px solid transparent;
+  }
+  .st:nth-child(odd) .node-arrow{right:-22px;border-left:9px solid #EFD3A8}
+  .st:nth-child(even) .node-arrow{left:-22px;border-right:9px solid #EFD3A8}
 
   .card{
-    position:relative;height:100%;background:var(--paper);border:1.5px solid var(--line);
-    border-radius:18px;padding:16px 15px 14px;display:flex;flex-direction:column;gap:9px;
-    box-shadow:0 2px 4px rgba(180,120,60,.06),0 12px 24px rgba(190,128,54,.09);
+    position:relative;background:var(--paper);border:1.5px solid var(--line);border-radius:20px;
+    padding:14px 16px 14px;display:flex;flex-direction:column;gap:10px;align-items:center;
+    box-shadow:0 2px 4px rgba(180,120,60,.06),0 14px 26px rgba(190,128,54,.10);
   }
-  .card::before{content:"";position:absolute;top:-3px;left:22px;width:34px;height:6px;border-radius:99px;background:var(--ac,var(--user));opacity:.85}
+  .card::before{content:"";position:absolute;top:-3px;left:24px;width:36px;height:6px;border-radius:99px;background:var(--ac,var(--user));opacity:.85}
 
-  .sthead{display:flex;align-items:center;gap:10px}
-  .badge{
-    flex:none;width:34px;height:34px;border-radius:50%;color:#fff;background:var(--ac,var(--user));
-    font-family:"Baloo 2",sans-serif;font-weight:800;font-size:17px;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 3px 0 rgba(74,55,40,.22);
+  .shot{display:flex;align-items:center;justify-content:center;gap:14px}
+  .meta{text-align:center}
+  .meta .tag{
+    display:inline-block;font-size:10.5px;font-weight:900;letter-spacing:.12em;color:var(--ac,var(--user));
+    background:color-mix(in srgb, var(--ac,var(--user)) 10%, #fff);
+    border:1px solid color-mix(in srgb, var(--ac,var(--user)) 26%, #fff);
+    border-radius:999px;padding:2px 10px;margin-bottom:5px;
   }
-  .titles h3{margin:0;font-size:15.5px;font-weight:900;line-height:1.3;text-wrap:balance}
-  .titles .stage{margin:2px 0 0;font-size:10.5px;font-weight:800;letter-spacing:.14em;color:var(--ac,var(--user));opacity:.95}
+  .meta h3{margin:0;font-size:16px;font-weight:900;text-wrap:balance}
+  .meta p{margin:3px 0 0;font-size:12.2px;color:var(--muted);font-weight:600}
+  .meta .rule{margin-top:7px;font-size:10.6px;font-weight:800;color:var(--user-dark);background:var(--user-soft);border-radius:8px;padding:4px 10px;display:inline-block}
+  .meta .rule.green{color:var(--app-dark);background:var(--app-soft)}
 
-  .avatars{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .avatar{
-    display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--line);
-    border-radius:12px;padding:4px 8px;font-size:11px;font-weight:700;color:var(--muted);
+  /* =========================================================
+     设备高保真 mockup
+  ========================================================== */
+  /* ---- 手机 ---- */
+  .pm{position:relative;width:216px;flex:none;filter:drop-shadow(0 12px 16px rgba(74,55,40,.18))}
+  .pm .frame{
+    background:var(--bezel);border-radius:38px;padding:9px;
+    box-shadow:inset 0 0 0 2px #2b2f38;
   }
-  .avatar svg{width:20px;height:20px}
+  .pm .screen{
+    position:relative;background:var(--screen);border-radius:30px;overflow:hidden;
+    height:420px;display:flex;flex-direction:column;font-size:11px;
+  }
+  .pm .notch{
+    position:absolute;top:9px;left:50%;transform:translateX(-50%);z-index:5;
+    width:78px;height:20px;background:var(--bezel);border-radius:12px;
+  }
+  .pm .statusbar{
+    flex:none;display:flex;justify-content:space-between;align-items:center;
+    padding:10px 16px 4px;font-size:10.5px;font-weight:800;color:#1f2937;
+  }
+  .pm .sb-icons{display:flex;align-items:center;gap:4px}
+  .pm .sb-icons svg{display:block}
+  .pm .body{flex:1;padding:4px 12px 8px;display:flex;flex-direction:column;gap:8px;min-height:0}
+  .pm .tabbar{
+    flex:none;display:flex;justify-content:space-around;align-items:center;
+    padding:7px 10px calc(7px + env(safe-area-inset-bottom,0px));border-top:1px solid #eee7d9;background:#fff;
+  }
+  .pm .tabbar .ti{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:8px;font-weight:700;color:#b6a88f}
+  .pm .tabbar .ti.on{color:var(--app)}
+  .pm .tabbar .ti svg{width:16px;height:16px}
 
-  .rows{display:flex;flex-direction:column;gap:7px}
-  .row{display:flex;gap:8px;font-size:12.4px;line-height:1.6}
-  .row .k{
-    flex:none;width:44px;height:20px;border-radius:6px;text-align:center;
-    font-size:10.5px;font-weight:900;color:#fff;transform:translateY(1px);
+  /* 通用小部件 */
+  .apphead{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:900;color:#134E4A}
+  .apphead .sub{margin-left:auto;font-size:9px;font-weight:800;color:#fff;background:var(--app);border-radius:999px;padding:2px 8px}
+  .ucard{background:#fff;border:1px solid #EDE3D0;border-radius:14px;padding:10px 11px;box-shadow:0 2px 6px rgba(180,140,80,.07)}
+  .ucard.tinted{background:linear-gradient(135deg,#F0FAF8,#E6F5F2);border-color:#BFEBE4}
+  .ucard.orange{background:linear-gradient(135deg,#FFF6E8,#FDEBD7);border-color:#F3D9B0}
+  .urow{display:flex;align-items:center;gap:8px}
+  .urow+.urow{margin-top:7px}
+  .uic{flex:none;width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--app-soft)}
+  .ut{font-size:11px;font-weight:800;color:#33312b}
+  .us{font-size:9.3px;color:var(--muted);font-weight:600;margin-top:1px}
+  .cta{
+    display:block;text-align:center;background:var(--app);color:#fff;font-weight:900;font-size:11.5px;
+    border-radius:999px;padding:8px 0;box-shadow:0 4px 8px rgba(13,148,136,.25);
   }
-  .row[data-k="see"] .k{background:var(--user)}
-  .row[data-k="back"] .k{background:#8A9BA8}
-  .row[data-k="val"] .k{background:var(--app)}
+  .cta.ghost{background:#fff;color:var(--app-dark);box-shadow:inset 0 0 0 1.5px #9ADCD2}
+  .pill{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:900;border-radius:999px;padding:2px 8px}
+  .pill.orange{background:var(--user-soft);color:var(--user-dark)}
+  .pill.green{background:var(--app-soft);color:var(--app-dark)}
+  .kv{display:flex;align-items:baseline;gap:4px}
+  .kv b{font-size:17px;font-family:"Baloo 2",sans-serif;color:#134E4A}
+  .kv span{font-size:9px;color:var(--muted);font-weight:700}
+  .chk{display:flex;align-items:center;gap:7px;font-size:10.3px;font-weight:700;color:#4b463c}
+  .chk .ck{flex:none;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .chk .ck.done{background:var(--app)}
+  .chk .ck.done svg{width:8px;height:8px}
+  .chk .ck.todo{background:#fff;box-shadow:inset 0 0 0 1.6px #C9BCA3}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:52px;padding:0 2px}
+  .bars i{flex:1;border-radius:4px 4px 2px 2px;background:var(--app-soft);box-shadow:inset 0 0 0 1px #A7E8DE;position:relative}
+  .bars i.hot{background:var(--user);box-shadow:none}
+  .bars i.mid{background:var(--app);box-shadow:none}
+  .barx{display:flex;gap:5px;padding:2px 2px 0}
+  .barx span{flex:1;text-align:center;font-size:7.5px;color:#b6a88f;font-weight:700}
 
-  .device{
-    border:1.5px dashed var(--line);border-radius:12px;padding:9px 10px;background:#fff;
+  /* ---- 手表 ---- */
+  .wm{position:relative;width:150px;flex:none;filter:drop-shadow(0 10px 14px rgba(30,64,175,.20))}
+  .wm .band{display:block;margin:0 auto;width:56px;height:26px;background:linear-gradient(180deg,#3a4150,#2b303c);border-radius:10px 10px 0 0}
+  .wm .band.bot{border-radius:0 0 10px 10px;background:linear-gradient(180deg,#2b303c,#22262f)}
+  .wm .case{
+    position:relative;background:var(--bezel);border-radius:34px;padding:8px;
+    box-shadow:inset 0 0 0 2px #2b2f38;
   }
-  .device[data-c="watch"]{border-color:#BFDBFE;background:linear-gradient(180deg,#F6FAFF,#EFF6FF)}
-  .device[data-c="app"]{border-color:#A7E8DE;background:linear-gradient(180deg,#F4FCFA,#EAF7F5)}
-  .dtag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:900;margin-bottom:6px}
-  .dtag svg{width:15px;height:15px}
-  .device[data-c="watch"] .dtag{color:var(--watch-dark)}
-  .device[data-c="app"] .dtag{color:var(--app-dark)}
-  .ui{border-radius:10px;padding:7px 9px;font-size:11.6px;font-weight:700;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.05)}
-  .device[data-c="watch"] .ui{border-radius:14px;color:#1E3A8A;box-shadow:inset 0 0 0 1.5px #BFDBFE}
-  .device[data-c="app"] .ui{color:#0B4F47;box-shadow:inset 0 0 0 1.5px #A7E8DE}
-  .ui .mini{font-size:10.3px;font-weight:600;color:var(--muted);margin-top:3px;line-height:1.55}
-  .ui .btnrow{display:flex;gap:6px;margin-top:7px}
-  .ui .btn{
-    flex:1;text-align:center;border-radius:999px;padding:3px 0;font-size:10.6px;font-weight:800;
+  .wm .crown{position:absolute;right:-4px;top:38%;width:6px;height:22px;border-radius:3px;background:#3a4150}
+  .wm .screen{
+    background:#0b1220;border-radius:26px;height:170px;overflow:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    color:#E5EDFF;text-align:center;padding:8px;position:relative;
   }
-  .device[data-c="watch"] .btn{background:var(--watch-soft);color:var(--watch-dark)}
-  .device[data-c="watch"] .btn.act{background:var(--watch);color:#fff}
-  .ui .kv{display:flex;justify-content:space-between;gap:8px;font-size:10.8px;font-weight:600;color:var(--muted);margin-top:4px}
-  .ui .kv b{color:#0B4F47;font-variant-numeric:tabular-nums}
-  .spark{display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:6px}
-  .spark i{flex:1;border-radius:3px 3px 0 0;background:var(--app-soft);box-shadow:inset 0 0 0 1px #A7E8DE}
-  .spark i.hot{background:var(--app);box-shadow:none}
+  .wm .screen.light{background:linear-gradient(180deg,#F2F7FF,#E4EEFF);color:#1E3A8A}
+  .wm .wtime{font-family:"Baloo 2",sans-serif;font-size:30px;font-weight:800;line-height:1;color:#fff}
+  .wm .wdate{font-size:8.5px;color:#8FA3CC;font-weight:700}
+  .wm .wrow{display:flex;gap:8px;align-items:center;justify-content:center}
+  .wm .wmetric{display:flex;align-items:center;gap:3px;font-size:9px;font-weight:800;color:#B9C8EA}
+  .wm .wmetric svg{width:10px;height:10px}
+  .wm .wtitle{font-size:10.5px;font-weight:900}
+  .wm .wsub{font-size:8.3px;font-weight:600;color:#7E8FB8;line-height:1.5}
+  .wm .light .wsub{color:#5B739F}
+  .wm .wbtns{display:flex;gap:6px;margin-top:4px;width:100%;padding:0 4px}
+  .wm .wbtn{
+    flex:1;border-radius:999px;padding:4px 0;font-size:8.6px;font-weight:900;
+    background:rgba(255,255,255,.14);color:#DCE6FF;
+  }
+  .wm .wbtn.act{background:var(--watch);color:#fff;box-shadow:0 3px 6px rgba(37,99,235,.4)}
+  .wm .light .wbtn{background:#D3E3FB;color:#33549c;box-shadow:none}
+  .wm .light .wbtn.act{background:var(--watch);color:#fff}
+  .wm .wemoji{font-size:20px;line-height:1}
+  .wm .notifdot{position:absolute;top:6px;right:14px;width:9px;height:9px;border-radius:50%;background:#F97316;box-shadow:0 0 0 2px rgba(249,115,22,.25)}
 
-  .chips{display:flex;flex-wrap:wrap;gap:6px}
-  .chipx{
-    display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 9px;
-    font-size:10.8px;font-weight:800;background:var(--dev-soft);color:var(--dev-dark);
-    box-shadow:inset 0 0 0 1px #DDD0FB;
-  }
-  .chipx svg{width:12px;height:12px}
-
-  .warn{margin-top:auto;font-size:10.6px;font-weight:700;color:var(--user-dark);background:var(--user-soft);border-radius:8px;padding:5px 9px}
-  .warn.green{color:var(--app-dark);background:var(--app-soft)}
-
-  /* ================= strips ================= */
-  .strip{
-    margin-top:26px;border-radius:18px;padding:18px 18px 16px;background:var(--paper);
-    border:1.5px solid var(--line);box-shadow:0 12px 24px rgba(190,128,54,.09);
-  }
-  .strip h4{margin:0 0 10px;font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px}
+  /* ---------- strips ---------- */
+  .strip{margin-top:8px;border-radius:18px;padding:18px;background:var(--paper);
+    border:1.5px solid var(--line);box-shadow:0 12px 24px rgba(190,128,54,.09)}
+  .strip h4{margin:0 0 12px;font-size:15px;font-weight:900;text-align:center}
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .duo .half{border-radius:14px;padding:12px 14px;font-size:12.4px;line-height:1.7}
-  .duo .half b{display:flex;align-items:center;gap:7px;font-size:13.5px;margin-bottom:5px}
+  .duo .half{border-radius:14px;padding:13px 15px;font-size:12.2px;line-height:1.7;display:flex;gap:10px;align-items:flex-start}
+  .duo .half svg{flex:none;width:26px;height:26px;margin-top:2px}
+  .duo .half b{display:block;font-size:13px;margin-bottom:2px}
   .duo .half.w{background:var(--watch-soft);color:#1E3A8A}
   .duo .half.a{background:var(--app-soft);color:#0B4F47}
-  .loopline{
-    margin-top:12px;text-align:center;font-weight:900;font-size:13.2px;color:var(--ink);
-    background:linear-gradient(90deg,var(--user-soft),var(--app-soft));
-    border-radius:999px;padding:7px 12px;
-  }
+  .loopline{margin-top:12px;text-align:center;font-weight:900;font-size:13.2px;color:var(--ink);
+    background:linear-gradient(90deg,var(--user-soft),var(--app-soft));border-radius:999px;padding:7px 12px}
   .loopline span{color:var(--user-dark)}
+  .foot{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;
+    background:#FCEBE6;border:1px solid #EFC2B4;color:#A63A24;border-radius:12px;
+    padding:10px 16px;font-size:11.6px;font-weight:700;text-align:center;line-height:1.6}
 
-  .foot{
-    margin-top:16px;display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;
-    background:#FCEBE6;border:1px solid #EFC2B4;color:#A63A24;
-    border-radius:12px;padding:10px 16px;font-size:12px;font-weight:700;text-align:center;
+  @media (max-width:900px){
+    .timeline::before{left:20px}
+    .st{width:auto;margin:0 0 26px 52px}
+    .st .node{left:-52px !important;right:auto !important}
+    .st .node-arrow{left:-14px !important;right:auto !important;border-left:9px solid #EFD3A8;border-right:0 !important}
   }
-
-  @media (max-width:960px){ .journey{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:620px){
-    .journey{grid-template-columns:1fr;gap:20px}
+  @media (max-width:560px){
     .duo{grid-template-columns:1fr}
-    .hero{gap:14px}
-    .mi{width:96px} .phone{width:150px} .watch{width:72px}
+    .mi{width:92px}.phone{width:132px}.watch{width:70px}
   }
-  @media (prefers-reduced-motion:reduce){
-    .mi .eye,.mi .cheek{animation:none}
-  }
+  @media (prefers-reduced-motion:reduce){.mi .eye{animation:none}}
 </style>
 
 <div class="slide">
@@ -214,20 +235,11 @@
   <header>
     <span class="eyebrow">运动健康生态 Agent · 完整体验样例（血糖 / 糖尿病前期）</span>
     <h1>小米的 90 天：一次被<em>持续承接</em>的血糖之旅</h1>
-    <p class="sub">从手表上的第一条风险线索，到确诊、目标化管理和复查衔接 —— 9 个阶段，用户、手表、App、设备与专业服务各司其职。</p>
+    <p class="sub">手表负责「发现线索 + 即时干预」，App 负责「解释确认 + 复盘衔接」，9 步走完一个闭环。</p>
   </header>
-
-  <div class="legend">
-    <span class="lg" data-c="user"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.4"/><path d="M5 20c1.4-3.6 4-5.4 7-5.4s5.6 1.8 7 5.4"/></svg></span>用户（小米）</span>
-    <span class="lg" data-c="watch"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg></span>手表触点</span>
-    <span class="lg" data-c="app"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><circle cx="12" cy="18.6" r="1.1" fill="#0D9488"/></svg></span>App 页面</span>
-    <span class="lg" data-c="dev"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.8"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.8"/></svg></span>设备 / 数据方案</span>
-    <span class="lg note">主线：先完成检测 / 专业评估，再确认阶段 —— 硬件按信息缺口推荐，而非先买再确认</span>
-  </div>
 
   <!-- ============ HERO ============ -->
   <div class="hero" aria-hidden="true">
-    <!-- 手表 -->
     <svg class="watch" viewBox="0 0 100 132">
       <rect class="wband" x="34" y="0" width="32" height="26" rx="9"/>
       <rect class="wband" x="34" y="106" width="32" height="26" rx="9"/>
@@ -243,39 +255,29 @@
       <text class="wt3" x="50" y="98" font-size="7.5" font-weight="700" text-anchor="middle" font-family="Noto Sans SC" opacity=".75">点击查看 ›</text>
     </svg>
 
-    <!-- 小米（卡通形象） -->
     <svg class="mi" viewBox="0 0 150 190">
-      <!-- 身体 / 连帽衫 -->
-      <path class="cheek" d="M28 172 q4 -42 20 -58 q14 -14 27 -14 t27 14 q16 16 20 58 z" fill="#F59E0B"/>
-      <path class="cheek" d="M62 122 q13 -10 26 0 l-4 12 h-18 z" fill="#FDE8D4"/>
-      <!-- 口袋 -->
-      <rect class="cheek" x="56" y="146" width="38" height="22" rx="8" fill="#EA8A0C"/>
-      <!-- 耳朵 -->
+      <path d="M28 172 q4 -42 20 -58 q14 -14 27 -14 t27 14 q16 16 20 58 z" fill="#F59E0B"/>
+      <path d="M62 122 q13 -10 26 0 l-4 12 h-18 z" fill="#FDE8D4"/>
+      <rect x="56" y="146" width="38" height="22" rx="8" fill="#EA8A0C"/>
       <circle cx="36" cy="70" r="7.5" fill="#FBD5AC"/>
       <circle cx="114" cy="70" r="7.5" fill="#FBD5AC"/>
-      <!-- 头 -->
       <ellipse cx="75" cy="66" rx="42" ry="40" fill="#FBD5AC"/>
-      <!-- 小米帽 -->
       <path d="M33 56 q-2 -38 42 -38 t42 38 q-42 -16 -84 0 z" fill="#E8792E"/>
       <path d="M33 56 q42 -16 84 0 q3 4 2 9 q-44 -17 -88 0 q-1 -5 2 -9 z" fill="#B45309"/>
       <rect x="63" y="16" width="9" height="11" rx="3.5" fill="#fff"/>
       <rect x="78" y="16" width="9" height="11" rx="3.5" fill="#fff"/>
-      <!-- 脸 -->
       <circle class="eye" cx="60" cy="68" r="4.2"/>
       <circle class="eye" cx="90" cy="68" r="4.2"/>
       <circle class="blush" cx="50" cy="79" r="5" fill="#F5A96B"/>
       <circle class="blush" cx="100" cy="79" r="5" fill="#F5A96B"/>
       <path d="M66 82 q9 8 18 0" fill="none" stroke="#3B2A1E" stroke-width="3" stroke-linecap="round"/>
-      <!-- 竖起的大拇指（右手） -->
-      <g class="cheek">
+      <g>
         <path d="M118 128 q16 -6 20 -20 q2 -8 8 -7 t5 10 q-2 16 -10 25 q-9 10 -23 8 z" fill="#F59E0B"/>
         <circle cx="138" cy="104" r="7" fill="#FBD5AC"/>
       </g>
-      <!-- 左手自然垂放 -->
-      <path class="cheek" d="M32 128 q-12 8 -10 24 q1 9 9 8 q8 -2 9 -14 z" fill="#F59E0B"/>
+      <path d="M32 128 q-12 8 -10 24 q1 9 9 8 q8 -2 9 -14 z" fill="#F59E0B"/>
     </svg>
 
-    <!-- 手机 App -->
     <svg class="phone" viewBox="0 0 180 320">
       <rect class="pbody" x="6" y="2" width="168" height="316" rx="30"/>
       <rect class="pscreen" x="14" y="10" width="152" height="300" rx="22"/>
@@ -283,211 +285,406 @@
       <rect class="phead" x="14" y="40" width="152" height="22"/>
       <text class="phead-t" x="30" y="34" font-size="13" font-weight="900" font-family="Noto Sans SC">血糖管理 · Pro</text>
       <text class="phead-t" x="30" y="50" font-size="8.5" font-weight="600" font-family="Noto Sans SC" opacity=".85">目标：稳定血糖 · 改善代谢</text>
-      <!-- 今日血糖卡 -->
       <text class="pkv" x="28" y="86" font-size="10.5" font-weight="900" font-family="Noto Sans SC">今日血糖</text>
       <text class="pkv-v" x="28" y="101" font-size="8.5" font-weight="700" font-family="Noto Sans SC">餐后峰值 7.2 mmol/L · 达标</text>
-      <!-- 曲线 -->
       <path class="garea" d="M28 150 L28 138 L46 132 L64 140 L82 118 L100 126 L118 108 L136 122 L152 114 L152 150 Z"/>
       <path class="gcurve" d="M28 138 L46 132 L64 140 L82 118 L100 126 L118 108 L136 122 L152 114"/>
       <circle class="gdot" cx="118" cy="108" r="3"/>
-      <!-- 今日任务 -->
       <text class="pkv" x="28" y="172" font-size="10.5" font-weight="900" font-family="Noto Sans SC">今日任务</text>
       <rect class="ptask" x="26" y="178" width="128" height="26" rx="8"/>
       <circle class="pcheck" cx="38" cy="191" r="7"/>
-      <path class="pcheck-t" d="M34.5 191 l2.4 2.6 4.2 -4.8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M34.5 191 l2.4 2.6 4.2 -4.8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="52" y="195" font-size="9.5" font-weight="700" fill="#134E4A" font-family="Noto Sans SC">餐后快走 10 分钟</text>
       <rect class="ptask" x="26" y="210" width="128" height="26" rx="8"/>
       <circle cx="38" cy="223" r="7" fill="#fff" stroke="#0D9488" stroke-width="1.6"/>
       <text x="52" y="227" font-size="9.5" font-weight="700" fill="#134E4A" font-family="Noto Sans SC">先菜后饭 · 加一份蛋白</text>
-      <!-- 复查倒计时 -->
       <rect x="26" y="246" width="128" height="30" rx="9" fill="#FFF6E8"/>
       <text x="36" y="259" font-size="9" font-weight="800" fill="#B45309" font-family="Noto Sans SC">复查倒计时</text>
       <text x="36" y="271" font-size="9" font-weight="700" fill="#92400E" font-family="Noto Sans SC">还有 12 天 · 报告可一键导出</text>
-      <!-- 底部 tab -->
-      <rect class="pbar" x="26" y="288" width="128" height="14" rx="7"/>
-      <rect class="pbar-act" x="30" y="291" width="26" height="8" rx="4"/>
+      <rect x="26" y="288" width="128" height="14" rx="7" fill="#D9F2EE"/>
+      <rect x="30" y="291" width="26" height="8" rx="4" fill="#0D9488"/>
     </svg>
   </div>
 
-  <!-- ============ JOURNEY 9 步 ============ -->
-  <div class="journey">
+  <!-- ============ TIMELINE ============ -->
+  <div class="timeline">
 
-    <!-- 1 -->
+    <!-- 1 佩戴手表 -->
     <div class="st">
+      <span class="node" style="--ac:var(--watch)">1</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--watch)">
-        <div class="sthead">
-          <span class="badge">1</span>
-          <div class="titles"><h3>购买并佩戴手表</h3><p class="stage">长期陪伴</p></div>
+        <div class="shot">
+          <div class="wm">
+            <span class="band"></span>
+            <div class="case"><span class="crown"></span>
+              <div class="screen">
+                <div class="wtime">7:30</div>
+                <div class="wdate">周四 · 9月3日</div>
+                <svg width="64" height="64" viewBox="0 0 64 64" style="margin:2px 0">
+                  <circle cx="32" cy="32" r="27" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="5.5"/>
+                  <circle cx="32" cy="32" r="27" fill="none" stroke="#F97316" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="120 170" transform="rotate(-90 32 32)"/>
+                  <circle cx="32" cy="32" r="19.5" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="5.5"/>
+                  <circle cx="32" cy="32" r="19.5" fill="none" stroke="#2DD4BF" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="88 123" transform="rotate(-90 32 32)"/>
+                  <circle cx="32" cy="32" r="12" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="5.5"/>
+                  <circle cx="32" cy="32" r="12" fill="none" stroke="#60A5FA" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="58 76" transform="rotate(-90 32 32)"/>
+                </svg>
+                <div class="wrow">
+                  <span class="wmetric"><svg viewBox="0 0 24 24" fill="#FB7185"><path d="M12 21s-7.5-4.7-10-9.3C.4 8.6 2.3 5 5.8 5c2 0 3.4 1.1 4.2 2.3h4C14.8 6.1 16.2 5 18.2 5c3.5 0 5.4 3.6 3.8 6.7C19.5 16.3 12 21 12 21z" transform="scale(.9) translate(1.3 1)"/></svg>68</span>
+                  <span class="wmetric"><svg viewBox="0 0 24 24" fill="#93C5FD"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>7h12m</span>
+                </div>
+              </div>
+            </div>
+            <span class="band bot"></span>
+          </div>
         </div>
-        <div class="avatars">
-          <span class="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#E8792E" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="7.5" r="3.4"/><path d="M5 20c1.4-3.6 4-5.4 7-5.4s5.6 1.8 7 5.4"/></svg>小米 · 像往常一样生活</span>
-        </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>正常使用运动、睡眠等功能，并<b>授权参加代谢风险研究</b>。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>手表沉淀活动、睡眠、心率长期基线；研究模型形成风险线索。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>穿戴入口 = <b>更早发现的机会</b>；不是所有用户都会收到提示。</span></div>
-        </div>
-        <div class="device" data-c="watch">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 静默记录基线</span>
-          <div class="ui">睡眠 7h12m · 静息心率 68<div class="mini">连续数据 → 个人基线 → 研究模型输入</div></div>
+        <div class="meta">
+          <span class="tag">长期陪伴</span>
+          <h3>购买并佩戴手表</h3>
+          <p>像往常一样生活，睡眠 / 心率 / 活动悄悄沉淀为个人基线</p>
         </div>
       </div>
     </div>
 
-    <!-- 2 -->
+    <!-- 2 风险提示 -->
     <div class="st">
+      <span class="node" style="--ac:var(--watch)">2</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--watch)">
-        <div class="sthead">
-          <span class="badge">2</span>
-          <div class="titles"><h3>收到风险研究提示</h3><p class="stage">发现</p></div>
+        <div class="shot">
+          <div class="wm">
+            <span class="band"></span>
+            <div class="case"><span class="crown"></span>
+              <div class="screen light">
+                <span class="notifdot"></span>
+                <div class="wemoji">🧡</div>
+                <div class="wtitle">健康研究提示</div>
+                <div class="wsub">发现值得进一步了解的<br><b>代谢风险</b>，建议完成<br>血糖相关检测</div>
+                <div class="wbtns"><span class="wbtn act">查看详情</span><span class="wbtn">稍后</span></div>
+              </div>
+            </div>
+            <span class="band bot"></span>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>手表出现提示，<b>点击查看</b>。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>App 风险研究页说明观察线索、模型适用范围、数据完整度和<b>不能说明什么</b>。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>提示指向<b>检测 / 专业评估</b>，不是凭手表下诊断。</span></div>
+        <div class="meta">
+          <span class="tag">发现</span>
+          <h3>收到风险研究提示</h3>
+          <p>手表弹线索，App 说明依据与边界</p>
+          <div class="rule">指向检测，不凭手表下诊断</div>
         </div>
-        <div class="device" data-c="watch">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 弹出研究提示</span>
-          <div class="ui">⚠️ 近期发现值得进一步了解的<b>代谢风险</b>，建议完成血糖相关检测<div class="mini">基于近 6 周睡眠、心率与活动趋势</div><div class="btnrow"><span class="btn act">查看详情</span><span class="btn">稍后再说</span></div></div>
-        </div>
-        <div class="warn">不诊断、不吓唬：只说「值得了解」，并把下一步指向可靠检测</div>
       </div>
     </div>
 
-    <!-- 3 -->
+    <!-- 3 检测/导入报告 -->
     <div class="st">
+      <span class="node" style="--ac:var(--dev)">3</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--dev)">
-        <div class="sthead">
-          <span class="badge">3</span>
-          <div class="titles"><h3>完成检测 / 导入报告</h3><p class="stage">确证</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">导入报告 <span class="sub">确证</span></div>
+                  <div class="ucard">
+                    <div class="urow">
+                      <span class="uic" style="background:#FDE8D4">📄</span>
+                      <div><div class="ut">体检报告.pdf</div><div class="us">2026-08-28 · 已识别 12 项指标</div></div>
+                      <span class="pill green" style="margin-left:auto">✓ 已识别</span>
+                    </div>
+                  </div>
+                  <div class="ucard">
+                    <div class="us" style="margin-bottom:6px">关键结果</div>
+                    <div class="urow"><div><div class="ut">空腹血糖</div><div class="us">参考 3.9–6.1</div></div><span class="pill orange" style="margin-left:auto">6.3 ↑</span></div>
+                    <div class="urow"><div><div class="ut">糖化血红蛋白</div><div class="us">参考 4.0–6.0%</div></div><span class="pill orange" style="margin-left:auto">5.9%</span></div>
+                    <div class="urow"><div><div class="ut">BMI</div><div class="us">参考 18.5–24</div></div><span class="pill" style="margin-left:auto;background:#F1EDE4;color:#7A6A52">26.1</span></div>
+                  </div>
+                  <div style="margin-top:auto;display:flex;flex-direction:column;gap:6px">
+                    <span class="cta">确认导入健康档案</span>
+                    <span class="cta ghost">预约专业评估</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>选择完成<b>血糖相关检测</b>，或<b>导入</b>近期体检 / 检验报告。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>Agent 核对日期、关键结果与专业结论；异常或不明确时提供<b>专业评估入口</b>。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>研究线索交给可靠检测与专业判断；<b>不要求先买 CGM 或升级 Pro</b>。</span></div>
-        </div>
-        <div class="chips">
-          <span class="chipx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="6.5" rx="1.8"/><rect x="17.5" y="13" width="4" height="6.5" rx="1.8"/></svg>血糖相关检测</span>
-          <span class="chipx">📄 体检 / 检验报告导入</span>
-          <span class="chipx">🩺 专业评估入口</span>
+        <div class="meta">
+          <span class="tag">确证</span>
+          <h3>完成检测 / 导入报告</h3>
+          <p>拍张照，指标自动识别进档案</p>
+          <div class="rule green">不要求先买 CGM 或升级 Pro</div>
         </div>
       </div>
     </div>
 
-    <!-- 4 -->
+    <!-- 4 确认目标 -->
     <div class="st">
+      <span class="node" style="--ac:var(--app)">4</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--app)">
-        <div class="sthead">
-          <span class="badge">4</span>
-          <div class="titles"><h3>确认阶段与目标</h3><p class="stage">目标确认</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">评估结果</div>
+                  <div class="ucard orange" style="text-align:center;padding:14px 11px">
+                    <div style="font-size:22px">🩺</div>
+                    <div class="ut" style="font-size:12.5px;margin-top:3px">经专业评估确认</div>
+                    <span class="pill orange" style="margin-top:6px;font-size:10.5px">糖尿病前期</span>
+                    <div class="us" style="margin-top:5px">可逆窗口 · 建议生活方式管理</div>
+                  </div>
+                  <div class="ucard tinted">
+                    <div class="urow">
+                      <span class="uic">🎯</span>
+                      <div><div class="ut">稳定血糖 · 改善代谢</div><div class="us">复查周期 12 周 · 写入健康档案</div></div>
+                    </div>
+                  </div>
+                  <div style="margin-top:auto"><span class="cta">设为主目标</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>经专业评估确认处于<b>糖尿病前期</b>，选择「稳定血糖、改善代谢」为主目标。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>档案记录阶段、目标和复查要求；<b>首页从泛健康状态牵引切换为目标牵引</b>。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>从「通用建议」转向「围绕一个明确目标管理」。</span></div>
-        </div>
-        <div class="device" data-c="app">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 首页改版生效</span>
-          <div class="ui">🎯 主目标：稳定血糖 · 改善代谢<div class="mini">阶段：糖尿病前期（专业评估 9/3 确认）<br>下次复查：12 周后 · 已写入档案</div></div>
+        <div class="meta">
+          <span class="tag">目标确认</span>
+          <h3>确认阶段与目标</h3>
+          <p>首页从「泛健康状态」切换为「目标牵引」</p>
         </div>
       </div>
     </div>
 
-    <!-- 5 -->
+    <!-- 5 推荐方案 -->
     <div class="st">
+      <span class="node" style="--ac:var(--dev)">5</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--dev)">
-        <div class="sthead">
-          <span class="badge">5</span>
-          <div class="titles"><h3>推荐方案与套件</h3><p class="stage">方案</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">建议方案 <span class="sub" style="background:var(--dev)">可选</span></div>
+                  <div class="ucard" style="border-color:#DDD0FB;background:linear-gradient(135deg,#F7F3FF,#EFE8FD)">
+                    <div class="urow">
+                      <svg width="34" height="34" viewBox="0 0 34 34">
+                        <circle cx="17" cy="17" r="13" fill="#fff" stroke="#C4B5FD" stroke-width="2"/>
+                        <circle cx="17" cy="17" r="8.5" fill="#EDE9FE"/>
+                        <path d="M17 25.5 q1.8 4 5 5.5" stroke="#7C3AED" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                        <circle cx="17" cy="17" r="3" fill="#7C3AED"/>
+                      </svg>
+                      <div><div class="ut">14 天 CGM 标定计划</div><div class="us">看清「哪一餐让血糖飙」</div></div>
+                    </div>
+                  </div>
+                  <div class="ucard">
+                    <div class="chk"><span class="ck done"><svg viewBox="0 0 10 8"><path d="M1 4l2.6 2.8L9 1" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>佩戴 CGM 14 天</div>
+                    <div class="chk" style="margin-top:7px"><span class="ck done"><svg viewBox="0 0 10 8"><path d="M1 4l2.6 2.8L9 1" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>记录三餐（拍照即可）</div>
+                    <div class="chk" style="margin-top:7px"><span class="ck done"><svg viewBox="0 0 10 8"><path d="M1 4l2.6 2.8L9 1" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>保持正常作息</div>
+                  </div>
+                  <div class="us" style="text-align:center">为什么需要 · 用多久 · 解决什么问题，都讲清楚</div>
+                  <div style="margin-top:auto"><span class="cta" style="background:var(--dev);box-shadow:0 4px 8px rgba(124,58,237,.25)">了解详情并选择</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>App 说明建议跟踪的数据、生活任务和可选套件；<b>由用户决定</b>是否升级 Pro。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>默认用报告 + 手表 + 饮食/体重记录；仅在<b>能回答具体问题、适用且获专业认可</b>时推荐血糖仪 / CGM。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>说清为什么需要、用多久、解决什么问题；<b>设备不是服务门槛</b>。</span></div>
+        <div class="meta">
+          <span class="tag">方案</span>
+          <h3>推荐方案与套件</h3>
+          <p>默认用报告+手表即可，缺口明确才推荐设备</p>
+          <div class="rule green">设备按需推荐 · 不是服务门槛</div>
         </div>
-        <div class="chips">
-          <span class="chipx">🩸 CGM（短期标定 14 天）</span>
-          <span class="chipx">🧪 血糖仪</span>
-          <span class="chipx">⚖️ 体脂秤</span>
-        </div>
-        <div class="warn green">推荐逻辑：补「回答不了的信息缺口」，而不是「能多卖就多卖」</div>
       </div>
     </div>
 
-    <!-- 6 -->
+    <!-- 6 目标化首页 -->
     <div class="st">
+      <span class="node" style="--ac:var(--app)">6</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--app)">
-        <div class="sthead">
-          <span class="badge">6</span>
-          <div class="titles"><h3>目标化首页</h3><p class="stage">呈现</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">血糖管理 <span class="sub">Pro</span></div>
+                  <div class="ucard tinted">
+                    <div class="urow" style="justify-content:space-between">
+                      <div><div class="us">今日餐后峰值</div><div class="kv"><b>7.2</b><span>mmol/L · 达标</span></div></div>
+                      <svg width="44" height="44" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="18" fill="none" stroke="#D9F2EE" stroke-width="5"/>
+                        <circle cx="22" cy="22" r="18" fill="none" stroke="#0D9488" stroke-width="5" stroke-linecap="round" stroke-dasharray="86 113" transform="rotate(-90 22 22)"/>
+                        <text x="22" y="26" font-size="10" font-weight="800" text-anchor="middle" fill="#0F766E" font-family="Baloo 2">76%</text>
+                      </svg>
+                    </div>
+                    <svg width="100%" height="46" viewBox="0 0 170 46" preserveAspectRatio="none" style="margin-top:6px">
+                      <path d="M0 40 L20 34 L40 38 L60 22 L80 30 L100 14 L120 24 L140 18 L170 12 L170 46 L0 46 Z" fill="rgba(13,148,136,.12)"/>
+                      <path d="M0 40 L20 34 L40 38 L60 22 L80 30 L100 14 L120 24 L140 18 L170 12" fill="none" stroke="#0D9488" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <circle cx="100" cy="14" r="3" fill="#0D9488"/>
+                    </svg>
+                    <div class="us" style="margin-top:2px">较上周 ↓ 0.6 · 来源：CGM ✓ 报告 ✓ 手表 ✓</div>
+                  </div>
+                  <div class="ucard">
+                    <div class="us" style="margin-bottom:5px">今日任务</div>
+                    <div class="chk"><span class="ck done"><svg viewBox="0 0 10 8"><path d="M1 4l2.6 2.8L9 1" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>餐后快走 10 分钟</div>
+                    <div class="chk" style="margin-top:7px"><span class="ck todo"></span>先菜后饭 · 加一份蛋白</div>
+                  </div>
+                </div>
+                <div class="tabbar">
+                  <span class="ti on"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V10l8-6 8 6v10h-5v-6h-6v6z"/></svg>首页</span>
+                  <span class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 19V5h2v14zm4 0V9h2v10zm4 0V3h2v16zm4 0v-7h2v7z"/></svg>数据</span>
+                  <span class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6z"/></svg>我的</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>首页突出目标进展、可靠血糖/检验资料、体重活动、今日任务及复查。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>Agent 按目标排序多源数据，标注<b>数据来源、缺口和观察限制</b>。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>不再跨 App 拼图，<b>先看到与目标有关的内容</b>。</span></div>
-        </div>
-        <div class="device" data-c="app">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 目标化首页示意</span>
-          <div class="ui">血糖管理<div class="spark"><i style="height:35%"></i><i style="height:48%"></i><i style="height:42%"></i><i class="hot" style="height:66%"></i><i class="hot" style="height:58%"></i><i style="height:40%"></i><i class="hot" style="height:72%"></i></div><div class="kv"><span>餐后峰值（近 7 天）</span><b>7.8 → 7.2 ↓</b></div><div class="kv"><span>数据来源</span><b>CGM ✓ · 报告 ✓ · 手表 ✓</b></div></div>
+        <div class="meta">
+          <span class="tag">呈现</span>
+          <h3>目标化首页</h3>
+          <p>打开 App 先看血糖：进展、任务、数据来源</p>
         </div>
       </div>
     </div>
 
-    <!-- 7 -->
+    <!-- 7 手表即时干预 -->
     <div class="st">
+      <span class="node" style="--ac:var(--watch)">7</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--watch)">
-        <div class="sthead">
-          <span class="badge">7</span>
-          <div class="titles"><h3>手表即时干预</h3><p class="stage">干预</p></div>
+        <div class="shot">
+          <div class="wm">
+            <span class="band"></span>
+            <div class="case"><span class="crown"></span>
+              <div class="screen light">
+                <div class="wemoji">🍚</div>
+                <div class="wtitle">已记录午餐</div>
+                <div class="wsub">按你们的计划：<br><b>现在开始 10 分钟快走？</b></div>
+                <div class="wbtns"><span class="wbtn act">开始</span><span class="wbtn">延后 30 分钟</span></div>
+              </div>
+            </div>
+            <span class="band bot"></span>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>记录一餐；合适时点手表提示<b>已约定的餐后活动</b>，可开始、延后或反馈不适。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>结合个人计划、日程与可靠历史选择任务，记录执行及主观反馈。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>建议发生在「<b>现在能做</b>」的时点 —— 干预的第一现场。</span></div>
+        <div class="meta">
+          <span class="tag">干预</span>
+          <h3>手表即时干预</h3>
+          <p>建议在「现在能做」的时点发生</p>
+          <div class="rule">不凭菜品照片断言「一定升糖」</div>
         </div>
-        <div class="device" data-c="watch">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 · 餐后 20 分钟推送</span>
-          <div class="ui">🍚 已记录午餐，按你们的计划：<b>现在开始 10 分钟快走？</b><div class="btnrow"><span class="btn act">开始</span><span class="btn">延后 30 分钟</span><span class="btn">反馈不适</span></div></div>
-        </div>
-        <div class="warn">不凭菜品照片断言「一定升糖」，不承诺活动「必然压低血糖」</div>
       </div>
     </div>
 
-    <!-- 8 -->
+    <!-- 8 周期复盘 -->
     <div class="st">
+      <span class="node" style="--ac:var(--app)">8</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--app)">
-        <div class="sthead">
-          <span class="badge">8</span>
-          <div class="titles"><h3>App 周期复盘</h3><p class="stage">闭环验证</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">本周复盘 <span class="sub" style="background:var(--user)">第 3 周</span></div>
+                  <div class="ucard">
+                    <div class="urow" style="justify-content:space-between;margin-bottom:6px">
+                      <div class="us">任务完成 <b style="color:#134E4A">6 / 7</b></div>
+                      <span class="pill green">峰值 7.8 → 7.2 ↓</span>
+                    </div>
+                    <div class="bars">
+                      <i class="mid" style="height:55%"></i><i class="mid" style="height:70%"></i><i class="mid" style="height:62%"></i><i class="mid" style="height:80%"></i><i class="mid" style="height:72%"></i><i class="hot" style="height:96%"></i><i style="height:40%"></i>
+                    </div>
+                    <div class="barx"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+                  </div>
+                  <div class="ucard orange">
+                    <div class="urow">
+                      <span class="uic" style="background:#fff">🔍</span>
+                      <div><div class="ut">反复情境：聚餐日峰值偏高</div><div class="us">下周：聚餐日把快走提前到餐后 15 分钟</div></div>
+                    </div>
+                  </div>
+                  <div style="margin-top:auto"><span class="cta">查看完整周报</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>周报说明<b>完成了什么、哪些情境反复出现、下周如何调整</b>。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>对齐饮食、活动、睡眠、体重及可用血糖资料；区分<b>关联 / 证据不足 / 例外</b>；未完成时处理实际障碍。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>从「打卡」升级为「<b>执行—变化—障碍—调整</b>」，提高可坚持性。</span></div>
-        </div>
-        <div class="device" data-c="app">
-          <span class="dtag"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App · 本周复盘卡</span>
-          <div class="ui">本周：任务完成 <b>6/7</b> · 餐后峰值整体下移<div class="mini">反复情境：聚餐日的餐后峰值偏高（关联）<br>下周调整：聚餐日把快走提前到餐后 15 分钟</div></div>
+        <div class="meta">
+          <span class="tag">闭环验证</span>
+          <h3>App 周期复盘</h3>
+          <p>执行 — 变化 — 障碍 — 调整，每周一张卡</p>
         </div>
       </div>
     </div>
 
-    <!-- 9 -->
+    <!-- 9 复查衔接 -->
     <div class="st">
+      <span class="node" style="--ac:var(--dev)">9</span><span class="node-arrow"></span>
       <div class="card" style="--ac:var(--dev)">
-        <div class="sthead">
-          <span class="badge">9</span>
-          <div class="titles"><h3>复查 / 就医衔接</h3><p class="stage">专业衔接</p></div>
+        <div class="shot">
+          <div class="pm">
+            <div class="frame"><div class="notch"></div>
+              <div class="screen">
+                <div class="statusbar"><span>9:41</span>
+                  <span class="sb-icons">
+                    <svg width="14" height="9" viewBox="0 0 14 9"><rect x="0" y="5.5" width="2.4" height="3.5" rx=".8" fill="#1f2937"/><rect x="3.6" y="3.8" width="2.4" height="5.2" rx=".8" fill="#1f2937"/><rect x="7.2" y="2" width="2.4" height="7" rx=".8" fill="#1f2937"/><rect x="10.8" y="0" width="2.4" height="9" rx=".8" fill="#c9c2b4"/></svg>
+                    <svg width="13" height="9" viewBox="0 0 13 9"><path d="M6.5 8.2 4.4 6a3 3 0 0 1 4.2 0zM2.6 4.2a5.6 5.6 0 0 1 7.8 0L9.2 5.4a3.9 3.9 0 0 0-5.4 0zM.4 2A8.4 8.4 0 0 1 12.6 2l-1.2 1.2a6.7 6.7 0 0 0-9.8 0z" fill="#1f2937"/></svg>
+                    <svg width="19" height="9" viewBox="0 0 19 9"><rect x=".5" y=".5" width="15" height="8" rx="2.2" fill="none" stroke="#1f2937"/><rect x="2" y="2" width="10" height="5" rx="1.2" fill="#1f2937"/><path d="M17 3v3a1.6 1.6 0 0 0 0-3z" fill="#1f2937"/></svg>
+                  </span>
+                </div>
+                <div class="body">
+                  <div class="apphead">复查准备 <span class="sub" style="background:var(--user)">D-12</span></div>
+                  <div class="ucard">
+                    <div class="urow">
+                      <span class="uic" style="background:#EEE6FD">📑</span>
+                      <div><div class="ut">90 天血糖管理报告</div><div class="us">趋势 · 事件 · 执行情况 · 待问问题</div></div>
+                    </div>
+                    <div style="display:flex;gap:5px;margin-top:8px">
+                      <span class="pill green">✓ 趋势</span><span class="pill green">✓ 事件</span><span class="pill green">✓ 待问清单</span>
+                    </div>
+                  </div>
+                  <div class="ucard tinted">
+                    <div class="urow">
+                      <span class="uic">📅</span>
+                      <div><div class="ut">复查提醒已开启</div><div class="us">结论确认后更新目标 · 有医嘱才启用用药提醒</div></div>
+                    </div>
+                  </div>
+                  <div style="margin-top:auto"><span class="cta" style="background:var(--dev);box-shadow:0 4px 8px rgba(124,58,237,.25)">导出报告给医生</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rows">
-          <div class="row" data-k="see"><span class="k">用户</span><span>到期前收到提醒，可导出<b>趋势、事件、执行情况和待问问题</b>。</span></div>
-          <div class="row" data-k="back"><span class="k">背后</span><span>汇总原始资料及摘要；复查结论经用户确认后更新目标；<b>有实际医嘱才开启用药提醒</b>。</span></div>
-          <div class="row" data-k="val"><span class="k">价值</span><span>医生更快了解管理过程，新结论<b>重新进入日常计划</b>。</span></div>
-        </div>
-        <div class="chips">
-          <span class="chipx">📤 一键导出报告</span>
-          <span class="chipx">📋 待问问题清单</span>
-          <span class="chipx">🩺 复查提醒</span>
+        <div class="meta">
+          <span class="tag">专业衔接</span>
+          <h3>复查 / 就医衔接</h3>
+          <p>一键导出，医生更快了解这段管理过程</p>
         </div>
       </div>
     </div>
@@ -496,15 +693,15 @@
 
   <!-- ============ 双端分工 ============ -->
   <div class="strip">
-    <h4>⌚📱 手表与 App 的分工 —— 两端共同形成闭环</h4>
+    <h4>⌚📱 两端共同形成闭环</h4>
     <div class="duo">
       <div class="half w">
-        <b><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>手表 = 前端的两个关键角色</b>
-        ① 风险研究入口：零门槛沉淀基线、发出线索提示；② 管理过程中的即时执行端：在「现在能做」的时点触达任务。
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="6" width="10" height="12" rx="3.5"/><path d="M9 2.5h6L14.6 6H9.4zM9.4 18h5.2l.4 3.5H9z"/></svg>
+        <div><b>手表 = 前端入口 + 即时执行端</b>零门槛沉淀基线、发出线索提示；在「现在能做」的时点触达任务。</div>
       </div>
       <div class="half a">
-        <b><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/></svg>App = 承接与解释的主场</b>
-        负责解释依据、确认目标、组织多源数据、完成周期复盘，并承担复查与就医的专业衔接。
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6.5" y="2.5" width="11" height="19" rx="3"/><circle cx="12" cy="18.6" r="1.1" fill="#D9F2EE"/></svg>
+        <div><b>App = 解释依据 + 复盘衔接</b>解释依据、确认目标、组织多源数据、周期复盘与复查衔接。</div>
       </div>
     </div>
     <div class="loopline">发现 → 检测 → 确认 → 干预 → 验证 → <span>专业衔接</span></div>
